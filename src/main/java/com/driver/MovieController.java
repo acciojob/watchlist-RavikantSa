@@ -40,9 +40,9 @@ public class MovieController {
 
 
     @GetMapping("/get-movie-by-name/{name}")
-    public ResponseEntity<Movie> getMovieByName(@RequestParam("name") String name){
-//        Student student = null; // Assign student by calling service layer method
-        Movie movie =  movieService.findMovie(name); // Assign student by calling service layer method
+    public ResponseEntity<Movie> getMovieByName(@PathVariable("name") String name){
+
+        Movie movie =  movieService.findMovie(name);
 
         return new ResponseEntity<>(movie, HttpStatus.CREATED);
     }
