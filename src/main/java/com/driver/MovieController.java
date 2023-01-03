@@ -33,7 +33,7 @@ public class MovieController {
 //    }
 
     @PostMapping("/add-movie-director-pair")
-    public ResponseEntity<String> addMovieDirectorPair(@RequestParam String movie , @RequestParam String director){
+    public ResponseEntity<String> addMovieDirectorPair(@RequestParam("movie") String movie , @RequestParam("director") String director){
         movieService.createMovieDirectorPair(movie, director);
         return new ResponseEntity<>("New movie-director pair added Successfully" , HttpStatus.CREATED);
     }
