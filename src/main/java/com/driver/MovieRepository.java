@@ -18,57 +18,6 @@ public class MovieRepository {
         this.directorMovieMapping = directorMovieMapping;
     }
 
-//
-//    public void saveMovieDirectorPair(String movie, String director) {
-//        if( movieMap.containsKey(movie) && directorMap.containsKey(director)){
-//            List<String> currentMovieByDirector = new ArrayList<>();
-////            currentMovieByDirector.add(movie);
-////            directorMovieMapping.put(director , currentMovieByDirector);
-//            if(directorMovieMapping.containsKey(director)){
-//              directorMovieMapping.get(director);
-//            }
-//            else{
-//                currentMovieByDirector = new ArrayList<>();
-//            }
-//
-//            currentMovieByDirector.add(movie);
-//            directorMovieMapping.put(director , currentMovieByDirector);
-//
-//        }
-//
-//    }
-//
-
-//    public String deleteDirector(String director) {
-//        if(directorMap.containsKey(director) || directorMovieMapping.containsKey(director)){
-//            List<String> movie = new ArrayList<>();
-//            if( directorMovieMapping.containsKey(director)){
-//                movie = directorMovieMapping.get(director);
-//                for(String m: movie){
-//                    if(movieMap.containsKey(m)){
-//                        movieMap.remove(m);
-//                        // movir got removed
-//                    }
-//                }
-//                directorMovieMapping.remove(director);
-//                //director movie map got removed
-//            }
-//
-//            if( directorMap.containsKey(director)){
-//                directorMap.remove(director);
-//            }
-//
-//            // director got removed
-//
-//            return "Successfully Deleted";
-//        }
-//        else{
-//            return  "Director Not Found";
-//        }
-//    }
-//
-
-
     public void saveMovie(Movie movie) {
         movieMap.put(movie.getName(), movie);
     }
@@ -170,20 +119,6 @@ public class MovieRepository {
     }
 
     //Get Director by Movie name from database
-//    public String getDirectorByMovieName(String movieName) {
-//
-//        for (String directorName : directorMovieMapping.keySet()) {
-//            List<String> movieList = new ArrayList<>();
-//            movieList = directorMovieMapping.get(directorName);
-//            for (String name : movieList) {
-//                if (name.equals(movieName)) {
-//                    return directorName;
-//                }
-//            }
-//        }
-//        return null;
-//    }
-
     public String getDirectorByMovieName(String movieName) {
         String director = null ;
         if(movieMap.containsKey(movieName)){

@@ -25,15 +25,6 @@ public class MovieController {
     }
 //    http://localhost:8099/movies/add-director
 
-//    @GetMapping("/get-movie-by-name/{name}")
-//    public ResponseEntity<Movie> getMovieByName(@PathVariable  String movieName){
-//        Movie  resultMovie  = movieService.findMovie(movieName);
-//        return    new ResponseEntity<>(resultMovie , HttpStatus.FOUND);
-//    }
-
-
-
-
     @GetMapping("/get-movie-by-name/{name}")
     public ResponseEntity<Movie> getMovieByName(@PathVariable("name") String name){
         Movie movie =  movieService.findMovie(name);
