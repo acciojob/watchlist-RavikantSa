@@ -1,7 +1,5 @@
 package com.driver;
-
 import org.springframework.stereotype.Repository;
-
 import java.util.*;
 
 
@@ -23,7 +21,8 @@ public class MovieRepository {
         movieMap.put( movie.getName() , movie);
     }
     public void saveDirector( Director director) {
-       directorMap.put( director.getName() , director);
+
+        directorMap.put( director.getName() , director);
     }
 
     public Movie findMovie(String movieName) {
@@ -36,13 +35,25 @@ public class MovieRepository {
 
     public void saveMovieDirectorPair(String movie, String director) {
         if( movieMap.containsKey(movie) && directorMap.containsKey(director)){
-            List<String> currentMovieByDirector = directorMovieMapping.get(director);
+            List<String> currentMovieByDirector = new ArrayList<>();
+//            currentMovieByDirector.add(movie);
+//            directorMovieMapping.put(director , currentMovieByDirector);
+            if(directorMovieMapping.containsKey(director)){
+              directorMovieMapping.get(director);
+            }
+            else{
+                currentMovieByDirector = new ArrayList<>();
+            }
+
             currentMovieByDirector.add(movie);
             directorMovieMapping.put(director , currentMovieByDirector);
+
         }
+
     }
     public  List<String> findMoviesFromDirector(String director){
         List<String> movieList = new ArrayList<>();
+
         if(directorMovieMapping.containsKey(director)) {
             movieList = directorMovieMapping.get(director);
         }
@@ -99,4 +110,29 @@ public class MovieRepository {
         }
         directorMovieMapping.clear();
     }
+
+    public String getDirectorByMovieName(String movieName) {
+        String director = null ;
+        if(movieMap.containsKey(movieName)){
+            for( String d : directorMovieMapping.keySet()){
+               for( String movie : directorMovieMapping.get(d)){
+                   if(movie.equals(movieName)){
+                       director = d;
+                   }
+               }
+            }
+       }
+      return director;
+//        for(String director: directorMovieMapping.keySet()){
+//
+//            //Iterating in the list of movies by a director.
+//            for(String movie: directorMovieMapping.get(director)){
+//                if(movie.equals(movieName))return director;
+//            }
+//        }
+//        return null;
+    }
+
+
+
 }
