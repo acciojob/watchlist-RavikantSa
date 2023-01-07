@@ -65,29 +65,32 @@ public class MovieController {
 //    http://localhost:8099/movies/add-movie-director-pair?movie=A&director=R
 //    http://localhost:8099/movies/add-movie-director-pair?movie=D &director=R
 
-    @GetMapping("get-movies-by-director-name/{director}")
-    public ResponseEntity<List<String>> getMoviesByDirectorName (@PathVariable String director){
+    @GetMapping("/get-movies-by-director-name/{director}")
+    public ResponseEntity<List<String>> getMoviesByDirectorName (@PathVariable() String director){
         List<String> movie = movieService.getMovieByDirector(director);
         return  new ResponseEntity<>(movie , HttpStatus.CREATED);
     }
 
-    @GetMapping("/get-director-by-movieName/{movie}")
-    public ResponseEntity<String> getDirectorByMovieName(@PathVariable String  movieName){
-       String s = movieService.getDirectorByMovieName(movieName);
-        return  new ResponseEntity<>( s, HttpStatus.FOUND);
-    }
 
 
 
-    @DeleteMapping ("delete-director-by-name")
-    public ResponseEntity<String>  deleteDirectorByName (@RequestParam("director") String director){
-        movieService.DeleteDirector(director);
-        return  new ResponseEntity<>( director + "removed Successfully", HttpStatus.FOUND);
+    @DeleteMapping("/delete-director-by-name")
+    public ResponseEntity<String> deleteDirectorByName(@RequestParam("director") String director){
+        movieService.deleteDirector(director);
+        return new ResponseEntity<>(director + " removed successfully", HttpStatus.CREATED);
     }
     @DeleteMapping("/delete-all-director")
     public  ResponseEntity<String> deleteAllDirectors(){
         movieService.deleteAllDirector();
         return  new ResponseEntity<>("All director delete successfully" , HttpStatus.ACCEPTED);
     }
+
+    // Get Director name by Movie name
+    @GetMapping("/get-director-by-movieName/{movie}")
+    public ResponseEntity<String> getDirectorByMovieName(@PathVariable String  movieName){
+        String director = movieService.getDirectorByMovieName(movieName);
+        return  new ResponseEntity<>( director, HttpStatus.FOUND);
+    }
+
 
 }
